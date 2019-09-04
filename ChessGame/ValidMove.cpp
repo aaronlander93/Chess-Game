@@ -1,48 +1,128 @@
 #include "stdafx.h"
 #include "ValidMove.h"
+
 using namespace std;
 
-bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newSquare, int pieceType)
+bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newSquare, int pieceType, bool whiteMove)
 {
+	//Check if it's player's turn
+	if (!isTurn(pieceType, whiteMove))
+	{
+		return false;
+	}
+
 	bool isValid = false;
+
+	//Identify if white or black pawn. All other pieces can be treated the same
+	if (pieceType != -1)
+	{
+		pieceType = abs(pieceType);
+	}
 
 	switch (pieceType)
 	{
+	case -1:
+		//Black pawn
+		isValid = isValidBlackPawn(oldSquare, newSquare, squareToPiece);
+		break;
+
 	case 1:
-		//Pawn
-		isValid = isValidPawn(oldSquare, newSquare);
-		return isValid;
+		//White pawn
+		isValid = isValidWhitePawn(oldSquare, newSquare, squareToPiece);
+		break;
 
 	case 2:
 		//Rook
-		isValid = isValidRook(oldSquare, newSquare);
-		return isValid;
+		isValid = isValidRook(oldSquare, newSquare, squareToPiece);
+		break;
 	
 	case 3:
+		//Knight
 		isValid = isValidKnight(oldSquare, newSquare);
-		return isValid;
+		break;
 
 	case 4:
-		isValid = isValidBishop(oldSquare, newSquare);
-		return isValid;
+		//Bishop
+		isValid = isValidBishop(oldSquare, newSquare, squareToPiece);
+		break;
 		
 	case 5:
-		isValid = isValidQueen(oldSquare, newSquare);
-		return isValid;
+		//Queen
+		isValid = isValidQueen(oldSquare, newSquare, squareToPiece);
+		break;
 	case 6:
+		//King
 		isValid = isValidKing(oldSquare, newSquare);
-		return isValid;
+		break;
 	}
-	return false;
+	return isValid;
 }
 
-bool ValidMove::isValidPawn(int oldSquare, int newSquare)
+bool ValidMove::isTurn(int pieceType, bool whiteTurn)
+{
+	//White piece and black turn
+	if (pieceType > 0 && !whiteTurn)
+	{
+		return false;
+	}
+
+	//Black piece and white turn
+	else if (pieceType < 0 && whiteTurn)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+bool ValidMove::isPieceOnSquare(map<int, int> squareToPiece, int square)
+{
+	return squareToPiece[square];
+}
+
+bool ValidMove::isValidBlackPawn(int oldSquare, int newSquare, map<int, int> squareToPiece)
+{
+	if (oldSquare < 56 && oldSquare > 47)
+	{
+		if (oldSquare - 8 == newSquare)
+		{
+			return true;
+		}
+		else if(oldSquare - 16 == newSquare && !isPieceOnSquare(squareToPiece, newSquare + 8))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else if (oldSquare - 8 == newSquare)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool ValidMove::isValidWhitePawn(int oldSquare, int newSquare, map<int, int> squareToPiece)
 {
 	if (oldSquare < 16 && oldSquare > 7)
 	{
-		if (oldSquare + 8 == newSquare || oldSquare + 16 == newSquare)
+		if (oldSquare + 8 == newSquare)
 		{
 			return true;
+		}
+		else if (oldSquare + 16 == newSquare && !isPieceOnSquare(squareToPiece, newSquare - 8))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 	else if (oldSquare + 8 == newSquare)
@@ -55,41 +135,67 @@ bool ValidMove::isValidPawn(int oldSquare, int newSquare)
 	}
 }
 
-bool ValidMove::isValidRook(int oldSquare, int newSquare)
+bool ValidMove::isValidRook(int oldSquare, int newSquare, map<int, int> squareToPiece)
 {
-	for (int i = oldSquare; i <= 64; i += 8)
+	bool collision = false;
+
+	for (int i = oldSquare + 8; i <= 64; i += 8)
 	{
-		if (i == newSquare)
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
 	}
 
-	for (int i = oldSquare; i >= 0; i -= 8)
+	collision = false;
+
+	for (int i = oldSquare - 8; i >= 0; i -= 8)
 	{
-		if (i == newSquare)
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
 	}
+
+	collision = false;
 
 	for (int i = oldSquare + 1; i <= 64; i++)
 	{
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
 		if (i % 8 == 0)
 		{
 			break;
 		}
-		else if (i == newSquare)
+		else if (i == newSquare && !collision)
 		{
 			return true;
 		}
 	}
 
+	collision = false;
+
 	for (int i = oldSquare - 1; i >= 0; i--)
 	{
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+
 		if (i % 8 == 0)
 		{
-			if (i == newSquare)
+			if (i == newSquare && !collision)
 			{
 				return true;
 			}
@@ -98,7 +204,7 @@ bool ValidMove::isValidRook(int oldSquare, int newSquare)
 				break;
 			}
 		}
-		if (i == newSquare)
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
@@ -117,35 +223,62 @@ bool ValidMove::isValidKnight(int oldSquare, int newSquare)
 	return false;
 }
 
-bool ValidMove::isValidBishop(int oldSquare, int newSquare)
+bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> squareToPiece)
 {
-	for (int i = oldSquare; i <= 64; i += 9)
+	bool collision = false;
+
+	for (int i = oldSquare + 9; i <= 64; i += 9)
 	{
-		if (i == newSquare)
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
 	}
 
-	for (int i = oldSquare; i >= 0; i -= 9)
+	collision = false;
+
+	for (int i = oldSquare - 9; i >= 0; i -= 9)
 	{
-		if (i == newSquare)
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
 	}
 
-	for (int i = oldSquare; i <= 64; i += 7)
+	collision = false;
+
+	for (int i = oldSquare + 7; i <= 64; i += 7)
 	{
-		if (i == newSquare)
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
 	}
 
-	for (int i = oldSquare; i >= 0; i -= 7)
+	collision = false;
+
+	for (int i = oldSquare - 7; i >= 0; i -= 7)
 	{
-		if (i == newSquare)
+		if (isPieceOnSquare(squareToPiece, i) && !collision)
+		{
+			collision = true;
+		}
+
+		if (i == newSquare && !collision)
 		{
 			return true;
 		}
@@ -154,9 +287,9 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare)
 	return false;
 }
 
-bool ValidMove::isValidQueen(int oldSquare, int newSquare)
+bool ValidMove::isValidQueen(int oldSquare, int newSquare, map<int, int> squareToPiece)
 {
-	if (isValidRook(oldSquare, newSquare) || isValidBishop(oldSquare, newSquare))
+	if (isValidRook(oldSquare, newSquare, squareToPiece) || isValidBishop(oldSquare, newSquare, squareToPiece))
 	{
 		return true;
 	}

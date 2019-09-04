@@ -8,14 +8,17 @@ using namespace std;
 class ValidMove
 {
 public:
-	bool isValidMove(map<int, int> , int , int, int);
+	bool isValidMove(map<int, int> , int , int, int, bool);
 
 private:
-	bool isValidPawn(int, int);
-	bool isValidRook(int, int);
+	bool isTurn(int, bool);
+	bool isPieceOnSquare(map<int, int>, int);
+	bool isValidBlackPawn(int, int, map<int, int>);
+	bool isValidWhitePawn(int, int, map<int, int>);
+	bool isValidRook(int, int, map<int, int>);
 	bool isValidKnight(int, int);
-	bool isValidBishop(int, int);
-	bool isValidQueen(int, int);
+	bool isValidBishop(int, int, map<int, int>);
+	bool isValidQueen(int, int, map<int, int>);
 	bool isValidKing(int, int);
 };
 
