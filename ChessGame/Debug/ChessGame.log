@@ -1,2 +1,10 @@
-﻿  ValidMove.cpp
+﻿  ChessGame.cpp
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(90): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(91): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(116): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(117): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(123): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(202): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(217): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   ChessGame.vcxproj -> C:\Users\Aaron\source\repos\ChessGame\Debug\ChessGame.exe

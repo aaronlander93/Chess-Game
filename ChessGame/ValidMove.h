@@ -9,6 +9,7 @@ class ValidMove
 {
 public:
 	bool isValidMove(map<int, int> , int , int, int, bool);
+	bool isValidCastle(map<int, int>, int, int);
 
 private:
 	bool isTurn(int, bool);

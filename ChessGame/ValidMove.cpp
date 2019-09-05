@@ -58,6 +58,29 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 	return isValid;
 }
 
+bool ValidMove::isValidCastle(map<int, int> squareToPiece, int newSquare, int pieceType)
+{
+	//White king
+	if (pieceType == 6)
+	{
+		//Attempting to castle
+		if (newSquare == 2 || newSquare == 6)
+		{
+			//King and rook in appropriate spot
+			if (squareToPiece[4] == 6 && squareToPiece[7] == 2)
+			{
+				//No pieces blocking
+				if (!isPieceOnSquare(squareToPiece, 5) && !isPieceOnSquare(squareToPiece, 6))
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
 bool ValidMove::isTurn(int pieceType, bool whiteTurn)
 {
 	//White piece and black turn
@@ -108,6 +131,7 @@ bool ValidMove::isValidBlackPawn(int oldSquare, int newSquare, map<int, int> squ
 		return false;
 	}
 }
+
 bool ValidMove::isValidWhitePawn(int oldSquare, int newSquare, map<int, int> squareToPiece)
 {
 	if (oldSquare < 16 && oldSquare > 7)
