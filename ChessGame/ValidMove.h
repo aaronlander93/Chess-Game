@@ -21,7 +21,7 @@ private:
 	bool isValidRook(int, int, int, map<int, int>);
 	bool isValidKnight(int, int);
 	bool isValidBishop(int, int, map<int, int>);
-	bool isValidQueen(int, int, map<int, int>);
+	bool isValidQueen(int, int, int, map<int, int>);
 	bool isValidKing(int, int);
 };
 

@@ -3,24 +3,20 @@
 
 using namespace std;
 
-bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newSquare, int pieceType, bool whiteMove)
-{
+bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newSquare, int pieceType, bool whiteMove) {
 	//Check if it's player's turn
-	if (!isTurn(pieceType, whiteMove))
-	{
+	if (!isTurn(pieceType, whiteMove)) {
 		return false;
 	}
 
 	bool isValid = false;
 
 	//Identify if white or black pawn. All other pieces can be treated the same
-	if (pieceType != -1)
-	{
+	if (pieceType != -1) {
 		pieceType = abs(pieceType);
 	}
 
-	switch (pieceType)
-	{
+	switch (pieceType) {
 	case -1:
 		//Black pawn
 		isValid = isValidBlackPawn(oldSquare, newSquare, squareToPiece);
@@ -48,7 +44,7 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 		
 	case 5:
 		//Queen
-		isValid = isValidQueen(oldSquare, newSquare, squareToPiece);
+		isValid = isValidQueen(oldSquare, newSquare, pieceType, squareToPiece);
 		break;
 	case 6:
 		//King
@@ -58,68 +54,48 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 	return isValid;
 }
 
-int ValidMove::castleType(map<int, int> squareToPiece, int newSquare, int pieceType)
-{
+int ValidMove::castleType(map<int, int> squareToPiece, int newSquare, int pieceType) {
 	int whiteKing = 6;
 	int blackKing = -6;
 	int whiteRook = 2;
 	int blackRook = -2;
 	//White king
-	if (pieceType == 6)
-	{
+	if (pieceType == 6) {
 		//Attempting to castle
-		if (newSquare == 6)
-		{
+		if (newSquare == 6) {
 			//King and rook in appropriate spot
-			if (squareToPiece[4] == whiteKing && squareToPiece[7] == whiteRook)
-			{
+			if (squareToPiece[4] == whiteKing && squareToPiece[7] == whiteRook) {
 				//No pieces blocking
-				if (!isPieceOnSquare(squareToPiece, 5) && !isPieceOnSquare(squareToPiece, 6))
-				{
+				if (!isPieceOnSquare(squareToPiece, 5) && !isPieceOnSquare(squareToPiece, 6)) {
 					return 1;
 				}
 				//Piece blocking
-				else
-				{
+				else {
 					return 0;
 				}
 			}
 		}
-		else if (newSquare == 2)
-		{
-			if (squareToPiece[4] == 6 && squareToPiece[0] == 2)
-			{
+		else if (newSquare == 2) {
+			if (squareToPiece[4] == 6 && squareToPiece[0] == 2) {
 				//No pieces blocking
-				if (!isPieceOnSquare(squareToPiece, 1) && !isPieceOnSquare(squareToPiece, 2) && !isPieceOnSquare(squareToPiece, 3))
-				{
+				if (!isPieceOnSquare(squareToPiece, 1) && !isPieceOnSquare(squareToPiece, 2) && !isPieceOnSquare(squareToPiece, 3)) {
 					return 2;
 				}
 			}
 		}
-	}
-	//Black King
-	else if (pieceType == blackKing)
-	{
-		if(newSquare == 62)
-		{
-			if(squareToPiece[63] == blackRook && squareToPiece[60] == blackKing)
-			{
-				if(!isPieceOnSquare(squareToPiece, 61) && !isPieceOnSquare(squareToPiece, 62))
-				{
+	} else if (pieceType == blackKing) {
+		if(newSquare == 62) {
+			if(squareToPiece[63] == blackRook && squareToPiece[60] == blackKing) {
+				if(!isPieceOnSquare(squareToPiece, 61) && !isPieceOnSquare(squareToPiece, 62)) {
 					return 3;
 				}
 			}
-		}
-		else if(newSquare == 58)
-		{
-			if(squareToPiece[56] == blackRook && squareToPiece[60] == blackKing)
-			{
-				if (!isPieceOnSquare(squareToPiece, 57) && !isPieceOnSquare(squareToPiece, 58) && !isPieceOnSquare(squareToPiece, 59))
-				{
+		} else if(newSquare == 58) {
+			if(squareToPiece[56] == blackRook && squareToPiece[60] == blackKing) {
+				if (!isPieceOnSquare(squareToPiece, 57) && !isPieceOnSquare(squareToPiece, 58) && !isPieceOnSquare(squareToPiece, 59)) {
 					return 4;
 				}
-				else
-				{
+				else {
 					return 0;
 				}
 			}
@@ -129,175 +105,119 @@ int ValidMove::castleType(map<int, int> squareToPiece, int newSquare, int pieceT
 	return 0;
 }
 
-bool ValidMove::isTurn(int pieceType, bool whiteTurn)
-{
+bool ValidMove::isTurn(int pieceType, bool whiteTurn) {
 	//White piece and black turn
-	if (pieceType > 0 && !whiteTurn)
-	{
+	if (pieceType > 0 && !whiteTurn) {
 		return false;
-	}
-
-	//Black piece and white turn
-	else if (pieceType < 0 && whiteTurn)
-	{
+	} else if (pieceType < 0 && whiteTurn) {
 		return false;
-	}
-	else
-	{
+	} else {
 		return true;
 	}
 }
 
-bool ValidMove::isAttemptedTake(map<int, int> squareToPiece, int pieceType, int square)
-{
-	if (pieceType > 0 && squareToPiece[square] < 0)
-	{
+bool ValidMove::isAttemptedTake(map<int, int> squareToPiece, int pieceType, int square) {
+	if (pieceType > 0 && squareToPiece[square] < 0) {
 		return true;
-	}
-	else if (pieceType < 0 && squareToPiece[square] > 0)
-	{
+	} else if (pieceType < 0 && squareToPiece[square] > 0) {
 		return true;
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
-bool ValidMove::isPieceOnSquare(map<int, int> squareToPiece, int square)
-{
+
+bool ValidMove::isPieceOnSquare(map<int, int> squareToPiece, int square) {
 	return squareToPiece[square];
 }
 
-bool ValidMove::isValidBlackPawn(int oldSquare, int newSquare, map<int, int> squareToPiece)
-{
-	if (oldSquare < 56 && oldSquare > 47)
-	{
-		if (oldSquare - 8 == newSquare)
-		{
+bool ValidMove::isValidBlackPawn(int oldSquare, int newSquare, map<int, int> squareToPiece) {
+	if (oldSquare < 56 && oldSquare > 47) {
+		if (oldSquare - 8 == newSquare) {
 			return true;
-		}
-		else if(oldSquare - 16 == newSquare && !isPieceOnSquare(squareToPiece, newSquare + 8))
-		{
+		} else if(oldSquare - 16 == newSquare && !isPieceOnSquare(squareToPiece, newSquare + 8)) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-	}
-	else if (oldSquare - 8 == newSquare)
-	{
+	} else if (oldSquare - 8 == newSquare) {
 		return true;
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
 
-bool ValidMove::isValidWhitePawn(int oldSquare, int newSquare, map<int, int> squareToPiece)
-{
-	if (oldSquare < 16 && oldSquare > 7)
-	{
-		if (oldSquare + 8 == newSquare)
-		{
+bool ValidMove::isValidWhitePawn(int oldSquare, int newSquare, map<int, int> squareToPiece) {
+	if (oldSquare < 16 && oldSquare > 7) {
+		if (oldSquare + 8 == newSquare) {
 			return true;
-		}
-		else if (oldSquare + 16 == newSquare && !isPieceOnSquare(squareToPiece, newSquare - 8))
-		{
+		} else if (oldSquare + 16 == newSquare && !isPieceOnSquare(squareToPiece, newSquare - 8)) {
 			return true;
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-	}
-	else if (oldSquare + 8 == newSquare)
-	{
+	} else if (oldSquare + 8 == newSquare) {
 		return true;
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
 
-bool ValidMove::isValidRook(int oldSquare, int newSquare, int pieceType, map<int, int> squareToPiece)
-{
+bool ValidMove::isValidRook(int oldSquare, int newSquare, int pieceType, map<int, int> squareToPiece) {
 	bool collision = false;
 
-	for (int i = oldSquare + 8; i <= 64; i += 8)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare + 8; i <= 64; i += 8) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			if (i == newSquare && isAttemptedTake(squareToPiece, pieceType, newSquare)
-				&& !collision)
-			{
+				&& !collision) {
 				return true;
 			}
 			collision = true;
 		}
 
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
 
 	collision = false;
 
-	for (int i = oldSquare - 8; i >= 0; i -= 8)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare - 8; i >= 0; i -= 8) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
 		}
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
 
 	collision = false;
 
-	for (int i = oldSquare + 1; i <= 64; i++)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare + 1; i <= 64; i++) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
 		}
-		if (i % 8 == 0)
-		{
+		if (i % 8 == 0) {
 			break;
-		}
-		else if (i == newSquare && !collision)
-		{
+		} else if (i == newSquare && !collision) {
 			return true;
 		}
 	}
 
 	collision = false;
 
-	for (int i = oldSquare - 1; i >= 0; i--)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare - 1; i >= 0; i--) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
 		}
 
-		if (i % 8 == 0)
-		{
-			if (i == newSquare && !collision)
-			{
+		if (i % 8 == 0) {
+			if (i == newSquare && !collision) {
 				return true;
-			}
-			else
-			{
+			} else {
 				break;
 			}
 		}
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
@@ -305,8 +225,7 @@ bool ValidMove::isValidRook(int oldSquare, int newSquare, int pieceType, map<int
 	return false;
 }
 
-bool ValidMove::isValidKnight(int oldSquare, int newSquare)
-{
+bool ValidMove::isValidKnight(int oldSquare, int newSquare) {
 	if (oldSquare + 6 == newSquare || oldSquare - 6 == newSquare) return true;
 	if (oldSquare + 10 == newSquare || oldSquare - 10 == newSquare) return true;
 	if (oldSquare + 15 == newSquare || oldSquare - 15 == newSquare) return true;
@@ -320,82 +239,61 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> square
 	bool collision = false;
 	int pieceType = 4;
 
-	for (int i = oldSquare + 9; i <= 64; i += 9)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{			
+	for (int i = oldSquare + 9; i <= 64; i += 9) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {			
 			if (i == newSquare && isAttemptedTake(squareToPiece, pieceType, newSquare)
-				&& !collision)
-			{
+				&& !collision) {
 				return true;
 			}
-
 			collision = true;
 		}
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
+	collision = false;  
 
-	collision = false;
-
-	for (int i = oldSquare - 9; i >= 0; i -= 9)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare - 9; i >= 0; i -= 9) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			if (i == newSquare && isAttemptedTake(squareToPiece, pieceType, newSquare)
-				&& !collision)
-			{
+				&& !collision) {
 				return true;
 			}
 
 			collision = true;
 		}
 
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
-
 	collision = false;
 
-	for (int i = oldSquare + 7; i <= 64; i += 7)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare + 7; i <= 64; i += 7) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			if (i == newSquare && isAttemptedTake(squareToPiece, pieceType, newSquare) 
-				&& !collision)
-			{
+				&& !collision) {
 				return true;
 			}
 
 			collision = true;
 		}
-
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
 
 	collision = false;
 
-	for (int i = oldSquare - 7; i >= 0; i -= 7)
-	{
-		if (isPieceOnSquare(squareToPiece, i) && !collision)
-		{
+	for (int i = oldSquare - 7; i >= 0; i -= 7) {
+		if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			if (i == newSquare && isAttemptedTake(squareToPiece, pieceType, newSquare)
-				&& !collision)
-			{
+				&& !collision) {
 				return true;
 			}
 			collision = true;
 		}
-
-		if (i == newSquare && !collision)
-		{
+		if (i == newSquare && !collision) {
 			return true;
 		}
 	}
@@ -403,20 +301,16 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> square
 	return false;
 }
 
-bool ValidMove::isValidQueen(int oldSquare, int newSquare, map<int, int> squareToPiece)
-{
-	if (isValidRook(oldSquare, newSquare, squareToPiece) || isValidBishop(oldSquare, newSquare, squareToPiece))
-	{
+bool ValidMove::isValidQueen(int oldSquare, int newSquare, int pieceType, map<int, int> squareToPiece) {
+	if (isValidRook(oldSquare, newSquare, pieceType, squareToPiece) || isValidBishop(oldSquare, newSquare, squareToPiece)) {
 		return true;
 	}
-	else
-	{
+	else {
 		return false;
 	}
 }
 
-bool ValidMove::isValidKing(int oldSquare, int newSquare)
-{
+bool ValidMove::isValidKing(int oldSquare, int newSquare) {
 	if (oldSquare + 1 == newSquare || oldSquare - 1 == newSquare) return true;
 	if (oldSquare + 7 == newSquare || oldSquare - 7 == newSquare) return true;
 	if (oldSquare + 8 == newSquare || oldSquare - 8 == newSquare) return true;
