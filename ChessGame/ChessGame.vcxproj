@@ -158,7 +158,15 @@
     <ClInclude Include="ValidMove.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="castleType.cpp" />
     <ClCompile Include="ChessGame.cpp" />
+    <ClCompile Include="isValidBishop.cpp" />
+    <ClCompile Include="isValidBlackPawn.cpp" />
+    <ClCompile Include="isValidKing.cpp" />
+    <ClCompile Include="isValidKnight.cpp" />
+    <ClCompile Include="isValidQueen.cpp" />
+    <ClCompile Include="isValidRook.cpp" />
+    <ClCompile Include="isValidWhitePawn.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
