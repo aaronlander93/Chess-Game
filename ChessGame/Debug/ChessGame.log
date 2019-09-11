@@ -1,10 +1,70 @@
 ﻿  ChessGame.cpp
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(90): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(91): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(116): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(117): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(123): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(202): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\aaron\source\repos\chessgame\chessgame\chessgame.cpp(217): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  ChessGame.vcxproj -> C:\Users\Aaron\source\repos\ChessGame\Debug\ChessGame.exe
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(90,26): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(90,26): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(90,26): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(90,26): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(90,26): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(91,26): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(91,26): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(91,26): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(91,26): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(91,26): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(116,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(117,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(123,41): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(123,35): warning C4244:  'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(169,43): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(169,36): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(218,28): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(218,25): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(233,28): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(233,25): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(335,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(335,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(335,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(335,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(335,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(336,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(336,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(336,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(336,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(336,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(342,45): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(342,39): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(354,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(354,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(354,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(354,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(354,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(355,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(355,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(355,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(355,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(355,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(361,45): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(361,39): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(373,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(373,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(373,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(373,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(373,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(374,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(374,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(374,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(374,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(374,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(380,45): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(380,39): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(392,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(392,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(392,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(392,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(392,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(393,19): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(393,19): warning C4244:         with
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(393,19): warning C4244:         [
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(393,19): warning C4244:             T=float
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(393,19): warning C4244:         ]
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(399,45): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\aland\source\repos\Chess-Game\ChessGame\ChessGame.cpp(399,39): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  ChessGame.vcxproj -> C:\Users\aland\source\repos\Chess-Game\Debug\ChessGame.exe
