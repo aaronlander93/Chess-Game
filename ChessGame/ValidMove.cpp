@@ -3,17 +3,21 @@
 
 using namespace std;
 
-bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newSquare, int pieceType, bool whiteMove) {
+bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newSquare, int piece, bool whiteMove) {
 	//Check if it's player's turn
-	if (!isTurn(pieceType, whiteMove)) {
+	if (!isTurn(piece, whiteMove)) {
 		return false;
 	}
 
 	bool isValid = false;
+	int pieceType = abs(piece);
 
 	//Identify if white or black pawn. All other pieces can be treated the same
-	if (pieceType != -1) {
-		pieceType = abs(pieceType);
+	if (piece != -1) {
+		pieceType = abs(piece);
+	}
+	else {
+		pieceType = -1;
 	}
 
 	switch (pieceType) {
@@ -25,6 +29,10 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 	case 1:
 		//White pawn
 		isValid = isValidWhitePawn(oldSquare, newSquare, squareToPiece);
+
+		if (isValid) {
+
+		}
 		break;
 
 	case 2:
@@ -51,7 +59,23 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 		isValid = isValidKing(oldSquare, newSquare);
 		break;
 	}
-	return isValid;
+
+	if (isValid) {
+		bool pieceOnSquare = isPieceOnSquare(squareToPiece, newSquare);
+
+		if (!pieceOnSquare) {
+			return true;
+		}
+		else if (pieceOnSquare && isAttemptedTake(squareToPiece, piece, newSquare)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
 }
 
 
