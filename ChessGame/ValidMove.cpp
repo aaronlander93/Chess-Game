@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ValidMove.h"
+#include "CheckMate.h"
 
 using namespace std;
 
@@ -29,10 +30,6 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 	case 1:
 		//White pawn
 		isValid = isValidWhitePawn(oldSquare, newSquare, squareToPiece);
-
-		if (isValid) {
-
-		}
 		break;
 
 	case 2:
@@ -76,9 +73,11 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 	else {
 		return false;
 	}
+
+	CheckMate check;
+
+	
 }
-
-
 
 bool ValidMove::isTurn(int pieceType, bool whiteTurn) {
 	//White piece and black turn
@@ -104,8 +103,3 @@ bool ValidMove::isAttemptedTake(map<int, int> squareToPiece, int pieceType, int 
 bool ValidMove::isPieceOnSquare(map<int, int> squareToPiece, int square) {
 	return squareToPiece[square];
 }
-
-
-
-
-

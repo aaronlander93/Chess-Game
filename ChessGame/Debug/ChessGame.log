@@ -1,6 +1,2 @@
 ﻿  ValidMove.cpp
-  isValidKnight.cpp
-  isValidWhitePawn.cpp
-  Generating Code...
-C:\Users\Aaron\source\repos\Chess-Game\ChessGame\isValidWhitePawn.cpp(33): warning C4715:  'ValidMove::isValidWhitePawn': not all control paths return a value
   ChessGame.vcxproj -> C:\Users\Aaron\source\repos\Chess-Game\Debug\ChessGame.exe

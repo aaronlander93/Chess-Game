@@ -3,12 +3,24 @@
 
 bool ValidMove::isValidKnight(int oldSquare, int newSquare) {
 
-	if (oldSquare + 6 == newSquare || oldSquare - 6 == newSquare) {
+	if (oldSquare + 6 == newSquare) {
 		for (int i = 0; i < 63; i += 8) {
-			if (oldSquare == i || oldSquare == i + 1 || 
-				oldSquare == i + 6 || oldSquare == i + 7) {
+			if (oldSquare == i || oldSquare == i + 1) {
 				return false;
 			}
+			else {
+				return true;
+			}
+		}
+	}
+	else if (oldSquare - 6 == newSquare) {
+		for (int i = 6; i < 63; i += 8) {
+				if (oldSquare == i || oldSquare == i + 1) {
+					return false;
+				}
+				else {
+					return true;
+				}
 		}
 	}
 

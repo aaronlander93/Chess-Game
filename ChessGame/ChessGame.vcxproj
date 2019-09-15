@@ -153,12 +153,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CheckMate.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ValidMove.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="castleType.cpp" />
+    <ClCompile Include="CheckMate.cpp" />
     <ClCompile Include="ChessGame.cpp" />
     <ClCompile Include="isValidBishop.cpp" />
     <ClCompile Include="isValidBlackPawn.cpp" />
