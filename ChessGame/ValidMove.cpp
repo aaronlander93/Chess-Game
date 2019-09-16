@@ -9,6 +9,10 @@ bool ValidMove::isValidMove(map<int, int> squareToPiece, int oldSquare, int newS
 	if (!isTurn(piece, whiteMove)) {
 		return false;
 	}
+	//Check if new square is occupied by a king
+	if (squareToPiece[newSquare] == 6 || squareToPiece[newSquare] == -6) {
+		return false;
+	}
 
 	bool isValid = false;
 	int pieceType = abs(piece);

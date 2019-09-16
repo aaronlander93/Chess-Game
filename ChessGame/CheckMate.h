@@ -8,7 +8,8 @@ using namespace std;
 class CheckMate
 {
 public:
-	bool isCheck(map<int, int>, bool, int);
+	bool isCheck(map<int, int>, bool);
+	bool isCheck(map<int, int>, bool, int, int, int);
 
 private:
 	bool isCheckWhite(map<int, int>, int);

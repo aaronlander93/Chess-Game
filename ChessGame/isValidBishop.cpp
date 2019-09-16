@@ -11,6 +11,9 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> square
 		}
 		else if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
+		}	
+		if ((i + 1) % 8 == 0) {
+			break;
 		}
 	}
 	collision = false;
@@ -20,6 +23,9 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> square
 		}
 		else if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
+		}
+		if (i % 8 == 0) {
+			break;
 		}
 	}
 	collision = false;
@@ -31,6 +37,9 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> square
 		else if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
 		}
+		if (i % 8 == 0) {
+			break;
+		}
 	}
 
 	collision = false;
@@ -41,6 +50,9 @@ bool ValidMove::isValidBishop(int oldSquare, int newSquare, map<int, int> square
 		}
 		else if (isPieceOnSquare(squareToPiece, i) && !collision) {
 			collision = true;
+		}
+		if ((i + 1) % 8 == 0) {
+			break;
 		}
 	}
 	return false;
